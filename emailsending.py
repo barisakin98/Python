@@ -2,18 +2,18 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-alıcı=input("E posta göndereceğiniz kişinin adresini yazınız..")
-konu_basligi=input("Göndereceğiniz e postanın konu başlığını yazınız..")
-mesaj=input("İletinizi yazınız..")
+receiver=input("Write your receiver.")
+subject_title=input("Write the title.")
+message=input("Write your message here.")
 
 
-parolamız="dfjnsdjlflnsdfsd"
-kendi_adresimiz="vsvsvsvsvvs@gmail.com"
+parolamız="your password"
+kendi_adresimiz="your gmail"
 gönderi=MIMEMultipart()gönderi["From"]=kendi_adresimiz
-gönderi["To"]=alıcı
-gönderi_yazı=MIMEText(mesaj,"plain") 
+gönderi["To"]=receiver
+gönderi_yazı=MIMEText(message,"plain") 
 gönderi.attach(gönderi_yazı)
-gönderi["Subject"]=konu_basligi
+gönderi["Subject"]=subject_title
 
 
 i=0
@@ -22,7 +22,7 @@ while i<25:
     mail.ehlo()
     mail.starttls()
     mail.login(kendi_adresimiz, parolamız)
-    mail.sendmail(kendi_adresimiz, alıcı, gönderi.as_string())
+    mail.sendmail(kendi_adresimiz, receiver, gönderi.as_string())
     print("İleti gönderildi..")
     mail.close()
     i+=1
